@@ -1,0 +1,32 @@
+﻿@model AutoShop.ViewModels.AddCustomerViewModel
+
+
+<h1>New Customer</h1>
+
+<form asp-controller="Customer" asp-action="Add" method="post">
+
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input class="form-control" asp-for="Phone" />
+        <span asp-validation-for="Phone"></span>
+    </div>
+
+    <input type="submit" value="Add Customer" />
+
+</form>

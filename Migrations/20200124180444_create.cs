@@ -2,7 +2,7 @@
 
 namespace AutoShop.Migrations
 {
-    public partial class updatedEF : Migration
+    public partial class create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

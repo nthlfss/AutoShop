@@ -2,7 +2,7 @@
 
 namespace AutoShop.Migrations
 {
-    public partial class CreateDB4 : Migration
+    public partial class fixes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

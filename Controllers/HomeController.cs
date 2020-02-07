@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AutoShop.Models;
+using AutoShop.Data;
 
 namespace AutoShop.Controllers
 {
     public class HomeController : Controller
     {
+        private AutoDbContext context;
+
+        public HomeController(AutoDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -20,6 +28,18 @@ namespace AutoShop.Controllers
         {
             return View();
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult Customers()
+        {
+            IList<Customer> customers = context.Customers.ToList();
+            return View(customers);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
