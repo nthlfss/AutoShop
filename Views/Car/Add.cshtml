@@ -21,6 +21,11 @@
         <span asp-validation-for="Year"></span>
     </div>
 
+    <div calls="form-group">
+        <label asp-for="CustomerID"></label>
+        <select asp-for="CustomerID" asp-items="Model.Customers"></select>
+    </div>
+
     <input type="submit" value="Add Car" />
 
 </form>

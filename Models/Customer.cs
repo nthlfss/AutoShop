@@ -26,6 +26,8 @@ namespace AutoShop.Models
         [MaxLength(13)]
         [Column(TypeName = "varchar(10)")]
         public string Phone { get; set; }
+
         public IList<Car> Cars { get; set; }
+
     }
 }

@@ -22,8 +22,21 @@ namespace AutoShop.ViewModels
         [Display(Name = "Year")]
         public string Year { get; set; }
 
-        public AddCarViewModel()
+        public int CustomerID { get; set; }
+        public List<SelectListItem> Customers { get; set; } = new List<SelectListItem>();
+
+        public AddCarViewModel() { }
+
+        public AddCarViewModel(IEnumerable<Customer> customers)
         {
+            foreach (Customer field in customers)
+            {
+                Customers.Add(new SelectListItem
+                {
+                    Value = field.ID.ToString(),
+                    Text = field.FirstName
+                });
+            }
         }
     }
 }

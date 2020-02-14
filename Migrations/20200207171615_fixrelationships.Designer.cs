@@ -4,14 +4,16 @@ using AutoShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutoShop.Migrations
 {
     [DbContext(typeof(AutoDbContext))]
-    partial class AutoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200207171615_fixrelationships")]
+    partial class fixrelationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,6 @@ namespace AutoShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CustomerID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Make")
                         .IsRequired()
@@ -44,8 +43,6 @@ namespace AutoShop.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CustomerID");
-
                     b.ToTable("Cars");
                 });
 
@@ -55,6 +52,9 @@ namespace AutoShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -76,6 +76,8 @@ namespace AutoShop.Migrations
                         .HasMaxLength(13);
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CarID");
 
                     b.ToTable("Customers");
                 });
@@ -114,11 +116,11 @@ namespace AutoShop.Migrations
                     b.ToTable("Repairs");
                 });
 
-            modelBuilder.Entity("AutoShop.Models.Car", b =>
+            modelBuilder.Entity("AutoShop.Models.Customer", b =>
                 {
-                    b.HasOne("AutoShop.Models.Customer", "Customer")
-                        .WithMany("Cars")
-                        .HasForeignKey("CustomerID")
+                    b.HasOne("AutoShop.Models.Car", "Car")
+                        .WithMany("Customers")
+                        .HasForeignKey("CarID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
